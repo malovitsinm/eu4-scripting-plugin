@@ -1,0 +1,47 @@
+<idea-plugin>
+    <id>org.example.eu4-scripting-plugin</id>
+    <name>EU4 Mod Scripting</name>
+    <vendor email="ignorantgurubox@gmail.com">Chim</vendor>
+
+    <description>Plugin for scripting EU4 modding files. Blah blah blah</description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType
+                name="Test File"
+                implementationClass="com.malovtisinm.eu4script.language.TestFileType"
+                fieldName="INSTANCE"
+                language="EU4Script"
+                extensions="testfile"
+        />
+        <fileType
+                name="Building File"
+                implementationClass="com.malovtisinm.eu4script.language.Eu4BuildingFileType"
+                fieldName="INSTANCE"
+                language="EU4BuildingScript"
+              />
+        <lang.syntaxHighlighterFactory
+                language="EU4Script"
+                implementationClass="com.malovtisinm.eu4script.language.Eu4ScriptSyntaxHighlighterFactory"/>
+        <lang.parserDefinition
+                language="EU4Script"
+                implementationClass="com.malovtisinm.eu4script.language.parser.Eu4ParserDefinition"/>
+        <lang.parserDefinition
+                language="EU4BuildingScript"
+                implementationClass="com.malovtisinm.eu4script.language.parser.Eu4BuildingParserDefinition"/>
+        <lang.substitutor
+                language="EU4Script"
+                implementationClass="com.malovtisinm.eu4script.language.Eu4BuildingLanguageSubstitutor"/>
+        <annotator
+                language="EU4Script"
+                implementationClass="com.malovtisinm.eu4script.language.annotator.BuildingAnnotator"/>
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>

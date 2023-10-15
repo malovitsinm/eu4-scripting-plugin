@@ -1,0 +1,40 @@
+{
+  parserClass="com.malovtisinm.eu4script.language.parser.Eu4ScriptParser"
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+  psiClassPrefix="Eu4Script"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.malovtisinm.eu4script.language.psi.core"
+  psiImplPackage="com.malovtisinm.eu4script.language.psi.core.impl"
+  psiImplUtilClass="com.malovtisinm.eu4script.language.psi.core.impl.PsiAttributeUtils"
+
+  elementTypeHolderClass="com.malovtisinm.eu4script.language.psi.core.Eu4Types"
+  elementTypeClass="com.malovtisinm.eu4script.language.psi.core.Eu4ElementType"
+  tokenTypeClass="com.malovtisinm.eu4script.language.psi.core.Eu4TokenType"
+  tokens = [
+    number='regexp:\d+(\.\d*)?'
+    lbrace='{'
+    rbrace='}'
+    string="regexp:('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")"
+    delimeter="="
+    accessor='.'
+    key="regexp:[a-z0-9][a-z0-9|_]*"
+]
+  name(".*expr")='expression'
+}
+
+root ::= statement*
+statement ::=  attribute | block [COMMENT]
+attribute ::= identifier delimeter value
+{
+  methods = [getName]
+}
+identifier ::= key
+value ::= (block | object | key | literal)
+block ::= lbrace attribute* rbrace {pin=1}
+object ::= key property?
+property ::= accessor object
+literal ::= numberLiteral | stringLiteral | booleanLiteral
+numberLiteral ::= number
+stringLiteral ::= string
+booleanLiteral ::= yes | no
+expr ::=  literal

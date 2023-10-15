@@ -1,0 +1,26 @@
+{
+  "mandatoryAttributes": [
+    {
+      "name": "cost",
+      "valueType": "NUMBER"
+    },
+    {
+      "name": "time",
+      "valueType": "NUMBER"
+    },
+    {
+      "name": "modifier",
+      "valueType": "COMPOSITE"
+    }
+  ],
+  "optionalAttributes": [
+    {
+      "name": "on_built",
+      "valueType": "COMPOSITE"
+    },
+    {
+      "name": "on_destroyed",
+      "valueType": "COMPOSITE"
+    }
+  ]
+}
